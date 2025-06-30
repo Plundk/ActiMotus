@@ -117,6 +117,14 @@ def AdjustRawBinData(Acc, ts=None):
     # Add timexone difference if not utc
 
     Tsens = 719529.0 + ts / 1000 / 86400
+    # DEBUG print for at finde problemet
+    print("=== DEBUG ts ===")
+    print("ts[0]:", ts[0])
+    print("ts[-1]:", ts[-1])
+    diff_ms = ts[-1] - ts[0]
+    diff_s = diff_ms / 1000
+    diff_h = diff_s / 3600
+    print("Duration in hours:", diff_h)
     Start = [719529.0 + ts[0] / 1000 / 86400]
 
     # upsampling frequency

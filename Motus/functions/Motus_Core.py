@@ -68,6 +68,7 @@ def main_multiple(
         Angle signal of arm (inc, fb, y-axis angle).
 
     """
+    print("=== Motus_Core kører ===")
     import numpy as np
 
     # After ActivityDetect is called, some additional filtering and classification takes place utilizing StepAnalysis
@@ -87,7 +88,9 @@ def main_multiple(
     # her har jeg manuelt slettet utc=True, da dette argument ikke er med i preprocessing for funktionen, hvor den bliver defineret. Det må være en fejl
     if AdjustBin:
         if AccThigh is not None:
-            AccThigh, Start, TimeThigh = AdjustRawBinData(AccThigh, SF)
+            print("AccThigh type:", type(AccThigh))
+            print("AccThigh shape:", getattr(AccThigh, "shape", "no shape"))
+            AccThigh, Start, TimeThigh = AdjustRawBinData(AccThigh, AccThigh[:,0])
 
             if Autocalibrate:
                 AccThigh, scale, offset = AutoCalibrate(AccThigh)
@@ -95,7 +98,7 @@ def main_multiple(
             TimeThigh = None
 
         if AccArm is not None:
-            AccArm, Start, TimeArm = AdjustRawBinData(AccArm, SF)
+            AccArm, Start, TimeArm = AdjustRawBinData(AccArm, AccArm[:,0])
 
             if Autocalibrate:
                 AccArm, scale, offset = AutoCalibrate(AccArm)
@@ -103,7 +106,7 @@ def main_multiple(
             TimeArm = None
 
         if AccTrunk is not None:
-            AccTrunk, Start, TimeTrunk = AdjustRawBinData(AccTrunk, SF)
+            AccTrunk, Start, TimeTrunk = AdjustRawBinData(AccTrunk,AccTrunk[:,0])
 
             if Autocalibrate:
                 AccTrunk, scale, offset = AutoCalibrate(AccTrunk)
@@ -111,7 +114,7 @@ def main_multiple(
             TimeTrunk = None
 
         if AccCalf is not None:
-            AccCalf, Start, TimeCalf = AdjustRawBinData(AccCalf, SF)
+            AccCalf, Start, TimeCalf = AdjustRawBinData(AccCalf, Acccalf[:,0])
 
             if Autocalibrate:
                 AccCalf, scale, offset = AutoCalibrate(AccCalf)
