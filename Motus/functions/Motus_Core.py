@@ -84,9 +84,10 @@ def main_multiple(
     )
 
     # Upsample/adjust raw data to G format and autocalibrate
+    # her har jeg manuelt slettet utc=True, da dette argument ikke er med i preprocessing for funktionen, hvor den bliver defineret. Det må være en fejl
     if AdjustBin:
         if AccThigh is not None:
-            AccThigh, Start, TimeThigh = AdjustRawBinData(AccThigh, SF, utc=True)
+            AccThigh, Start, TimeThigh = AdjustRawBinData(AccThigh, SF)
 
             if Autocalibrate:
                 AccThigh, scale, offset = AutoCalibrate(AccThigh)
@@ -94,7 +95,7 @@ def main_multiple(
             TimeThigh = None
 
         if AccArm is not None:
-            AccArm, Start, TimeArm = AdjustRawBinData(AccArm, SF, utc=True)
+            AccArm, Start, TimeArm = AdjustRawBinData(AccArm, SF)
 
             if Autocalibrate:
                 AccArm, scale, offset = AutoCalibrate(AccArm)
@@ -102,7 +103,7 @@ def main_multiple(
             TimeArm = None
 
         if AccTrunk is not None:
-            AccTrunk, Start, TimeTrunk = AdjustRawBinData(AccTrunk, SF, utc=True)
+            AccTrunk, Start, TimeTrunk = AdjustRawBinData(AccTrunk, SF)
 
             if Autocalibrate:
                 AccTrunk, scale, offset = AutoCalibrate(AccTrunk)
@@ -110,7 +111,7 @@ def main_multiple(
             TimeTrunk = None
 
         if AccCalf is not None:
-            AccCalf, Start, TimeCalf = AdjustRawBinData(AccCalf, SF, utc=True)
+            AccCalf, Start, TimeCalf = AdjustRawBinData(AccCalf, SF)
 
             if Autocalibrate:
                 AccCalf, scale, offset = AutoCalibrate(AccCalf)
